@@ -1,3 +1,4 @@
+from types import *
 taxi = [[[8,"t"],[9,"t"],[46,"b"],[58,"b"],[46,"u"]],
 [[10,"t"],[20,"t"]],
 [[4,"t"],[11,"t"],[12,"t"],[22,"b"],[23,"b"]],
@@ -28,3 +29,15 @@ while trav != "end":
     loco = p
     p = []
     trav = raw_input("\nNext Ticket\nOr 'end' to finish\n")
+    try:
+        trav = int(trav)
+    except (TypeError, ValueError):
+        continue
+    while type(trav) is IntType:
+        loco.remove(trav)
+        print loco
+        trav = raw_input("\nNext Ticket\nOr 'end' to finish\n")
+        try:
+            trav = int(trav)
+        except (TypeError, ValueError):
+            continue
