@@ -17,7 +17,7 @@ print(forecast_out)
 df['label'] = df[forecast_col].shift(-forecast_out)
 
 X = np.array(df.drop(['label'], 1))
-X = preprocessing.scale(X)
+#X = preprocessing.scale(X)
 X = X[:-forecast_out]
 print(X)
 df.dropna(inplace=True)
@@ -28,3 +28,4 @@ clf = LinearRegression(n_jobs=-1)
 clf.fit(X_train, y_train)
 confidence = clf.score(X_test, y_test)
 print(confidence)
+print(X_test[-3:], y_test[-3:])
