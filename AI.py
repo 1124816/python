@@ -14,7 +14,7 @@ def scorer(game, bMove):
         return -bestMoveAndScore(game)["score"]
 
 def bestMoveAndScore(game):
-    global tocan 
+    global tocan
     score = -2
     best_move = False
     for move in game.moves():
