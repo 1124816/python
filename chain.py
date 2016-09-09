@@ -16,3 +16,4 @@ while total < 100000:
     total += 1
 print count
 print time.time() - start
+#8581146
