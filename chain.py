@@ -1,9 +1,9 @@
-import math
-total = 1
+import time
+start = time.time()
 count = 0
-while total < 10000000:
+total = 1
+while total < 100000:
     num = total
-    print str(num) + ":"
     sum = 0
     while(num!=1 and num!=89):
         for i in str(num):
@@ -15,4 +15,4 @@ while total < 10000000:
         count+=1
     total += 1
 print count
-#8581146?
+print time.time() - start
