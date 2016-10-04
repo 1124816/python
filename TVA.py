@@ -36,15 +36,15 @@ class power:
         for i in range(len(self.dams)):
             self.dams[i].update()
         for i in range(len(self.nuclear)):
-            self.nuclear[i] = update()
+            self.nuclear[i].update()
         for i in range(len(self.lCoal)):
-            self.lCoal[i] = update()
+            self.lCoal[i].update()
         for i in range(len(self.sCoal)):
-            self.sCoal[i] = update()
+            self.sCoal[i].update()
         for i in range(len(self.cc)):
-            self.cc[i] = update()
+            self.cc[i].update()
         for i in range(len(self.ct)):
-            self.ct[i] = update()
+            self.ct[i].update()
         if(self.time % 12 == 0):
             self.costAll +=self.cost
 
