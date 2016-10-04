@@ -8,6 +8,7 @@ import os
 
 for s in os.listdir("files"):
     im = cv.imread("files/"+s, cv.IMREAD_COLOR)
+
     im = cv.resize(im, (320,240))
     #im = cv.bitwise_not(im)
 
@@ -24,9 +25,9 @@ for s in os.listdir("files"):
             lan = (((cv.contourArea(cv.convexHull(c))/cv.contourArea(c))*0.25)+((cv.contourArea(cv.convexHull(c)))*0.75))
             thing = c
 
-            contours = [thing]
+    contours = [thing]
 
 
-            im4 = cv.cvtColor(im3, cv.COLOR_GRAY2BGR)
-            cv.drawContours(im4,contours,-1,(0,255,0),1)
-            cv.imwrite("filesa/"+s, im4)
+    im4 = cv.cvtColor(im3, cv.COLOR_GRAY2BGR)
+    cv.drawContours(im4,contours,-1,(0,255,0),1)
+    cv.imwrite("filesa/"+s, im4)

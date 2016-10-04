@@ -286,15 +286,20 @@ class ct:
 
 
 
-
-
 all = power()
 print all.power
-all.dams[0].turnOn()
-all.dams[1].turnOn()
-all.dams[2].turnOn()
-all.dams[3].turnOn()
-all.dams[4].turnOn(.75)
-all.dams[5].turnOn(.5)
+
+power = int(raw_input("Things that are cool"))
+for a in all.dams:
+    a.turnOn()
+for a in all.nuclear:
+    a.turnOn()
+
+a = 0
+
+while(a<900):
+    all.update()
+    a+=1
+
 all.update()
 print all.power
