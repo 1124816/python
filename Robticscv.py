@@ -3,9 +3,9 @@ import cv2 as cv
 import numpy as np
 import os
 
-
+array = []
 # Read image
-
+locate = 0
 for s in os.listdir("files"):
     im = cv.imread("files/"+s, cv.IMREAD_COLOR)
 
@@ -21,13 +21,18 @@ for s in os.listdir("files"):
     lan = 0
     thing = 0
     for c in contours:
-        if(cv.contourArea(c)>0 and (((cv.contourArea(cv.convexHull(c))/cv.contourArea(c))*0.25)+((cv.contourArea(cv.convexHull(c)))*0.75))>=lan):
-            lan = (((cv.contourArea(cv.convexHull(c))/cv.contourArea(c))*0.25)+((cv.contourArea(cv.convexHull(c)))*0.75))
+        if(cv.contourArea(c)>0 and (((cv.contourArea(cv.convexHull(c))/cv.contourArea(c))*50)+((cv.contourArea(cv.convexHull(c)))))>=lan):
+            lan = (((cv.contourArea(cv.convexHull(c))/cv.contourArea(c))*50)+((cv.contourArea(cv.convexHull(c)))))
             thing = c
 
     contours = [thing]
 
+    #print cv.contourArea(cv.convexHull(thing))
+    #print cv.contourArea(cv.convexHull(thing))/cv.contourArea(thing)*50
 
     im4 = cv.cvtColor(im3, cv.COLOR_GRAY2BGR)
     cv.drawContours(im4,contours,-1,(0,255,0),1)
     cv.imwrite("filesa/"+s, im4)
+    #cv.imshow('title', im4)
+    #cv.waitKey(0)
+    #cv.destroyAllWindows()
