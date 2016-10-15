@@ -53,7 +53,6 @@ contours = [thing]
 #print cv.contourArea(cv.convexHull(thing))/cv.contourArea(thing)*50
 
 im4 = cv.cvtColor(im3, cv.COLOR_GRAY2BGR)
-cv.imshow('color', im4)
 cv.drawContours(im4,contours,-1,(0,255,0),1)
 #cv.imwrite("filesa/"+s, im4)
 cv.imshow('title', im4)
