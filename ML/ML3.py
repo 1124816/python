@@ -1,11 +1,11 @@
 import numpy as np
 
 X = np.array(([3,5], [5,1], [10,2]), dtype=float)
-y = np.array(([75], [82], [93]), dtype=float)
+y = np.array(([15], [5], [20]), dtype=float)
 
 # Normalize
 X = X/np.amax(X, axis=0)
-y = y/100 #Max test score is 100
+y = y/np.amax(X, axis=0) #Max test score is 100
 
 
 
