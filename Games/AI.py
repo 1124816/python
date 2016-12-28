@@ -3,6 +3,7 @@
 #game.score()
 
 import math
+from random import randint
 
 tocan = 0
 
@@ -140,7 +141,13 @@ while(t.moves() !=[]):
     p = int(raw_input(t.moves()))
     d = int(raw_input())
     t = t.afterMove([p,d])
-    if(t.moves !=[]):
+    if(t.moves !=[] and len(t.x) < 60):
+        print t.moves()
+        move = randint(0,len(t.moves())-1)
+        print t.moves()[move]
+        print t.b
+        t = t.afterMove(t.moves()[move])
+    elif(t.moves !=[]):
         print t.moves()
         move = bestMoveAndScore(t)["move"]
         print t.moves()
