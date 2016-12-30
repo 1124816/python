@@ -1,3 +1,3 @@
 # python
-Plz help me I'm bored.
-^^cool stuff^^
+Me coding out loud.
+Mostly Python, some JS.
