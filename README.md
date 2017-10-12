@@ -1,3 +1,3 @@
 # python
-Me coding out loud.
+Me thinking out loud.
 Mostly Python, some JS.
