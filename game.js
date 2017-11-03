@@ -19,7 +19,7 @@ function move() {
         };
         first = valid_moves[moves.indexOf(Math.max.apply(null, moves))];
         console.log(first.print());
+        //console.log(first.update_win());
         console.log(first.valid_moves().map(i=>i.data[i.data.length-1][1]));
-        move();
     });
 };

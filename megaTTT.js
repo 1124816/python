@@ -39,15 +39,32 @@ ${s[6][6]} | ${s[6][7]} | ${s[6][8]} || ${s[7][6]} | ${s[7][7]} | ${s[7][8]} || 
             var next = this.data[this.data.length-1][1][1];
             var x = 0;
             var wins = this.update_win();
-            while(x<9) {
-                if(this.dataL[next][x]===undefined) {
-                    var newdata = this.data.slice();
-                    newdata.splice(newdata.length, 0, [(last_play==='x'?'y':'x'),[next,x]]);
-                    returner.push(state_factory(newdata, this.wins.slice()));
+            if(wins[next]===undefined) {
+                while(x<9) {
+                    if(this.dataL[next][x]===undefined) {
+                        var newdata = this.data.slice();
+                        newdata.splice(newdata.length, 0, [(last_play==='x'?'y':'x'),[next,x]]);
+                        returner.push(state_factory(newdata, this.wins.slice()));
+                    };
+                    x++;
                 };
-                x++;
-            };
-            if(returner.length===0) {
+                if(returner.length===0) {
+                    var x = 0;
+                    while(x<9) {
+                        var y = 0;
+                        while(y<9) {
+                            if(this.dataL[x][y]===undefined) {
+                                var newdata = this.data.slice();
+                                newdata.splice(newdata.length, 0, [(last_play==='x'?'y':'x'),[x,y]]);
+                                returner.push(state_factory(newdata, this.wins.slice()));
+
+                            };
+                            y++;
+                        };
+                        x++;
+                    };
+                };
+            } else {
                 var x = 0;
                 while(x<9) {
                     var y = 0;
@@ -108,17 +125,16 @@ ${s[6][6]} | ${s[6][7]} | ${s[6][8]} || ${s[7][6]} | ${s[7][7]} | ${s[7][8]} || 
     },
 
     is_local_win(x) {
-        var pwins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[2,4,7],[3,5,8],[0,4,8],[2,4,6]];
+        var pwins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
         if(typeof(x)==='number') {
             x = this.dataL[x];
         };
-        for(i in pwins) {
+        for(let i in pwins) {
             if(x[pwins[i][0]]===x[pwins[i][1]]&&x[pwins[i][1]]===x[pwins[i][2]]) {
                 return x[pwins[i][0]];
-            } else {
-                return undefined;
             };
         };
+        return undefined;
     },
 };
 
