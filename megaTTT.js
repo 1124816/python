@@ -129,6 +129,7 @@ ${s[6][6]} | ${s[6][7]} | ${s[6][8]} || ${s[7][6]} | ${s[7][7]} | ${s[7][8]} || 
         if(typeof(x)==='number') {
             x = this.dataL[x];
         };
+        console.log(x);
         for(let i in pwins) {
             if(x[pwins[i][0]]===x[pwins[i][1]]&&x[pwins[i][1]]===x[pwins[i][2]]) {
                 return x[pwins[i][0]];

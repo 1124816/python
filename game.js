@@ -17,9 +17,10 @@ function move() {
         for(i in valid_moves) {
             moves.push(best_move(valid_moves[i], 3));
         };
+        console.log(moves);
         first = valid_moves[moves.indexOf(Math.max.apply(null, moves))];
         console.log(first.print());
-        //console.log(first.update_win());
+        console.log(first.update_win());
         console.log(first.valid_moves().map(i=>i.data[i.data.length-1][1]));
     });
 };
