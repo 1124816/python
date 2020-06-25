@@ -3,24 +3,26 @@
 #game.score()
 
 import math
+from random import randint
 
 tocan = 0
 
-def scorer(game, bMove):
+def scorer(game, bMove, x=0):
     game = game.afterMove(bMove)
     if game.moves() == []:
+        print "bobobobobobobobobboobobobobobobobobob"
         return game.score()
     else:
-        return -bestMoveAndScore(game)["score"]
+        return -bestMoveAndScore(game, x)["score"]
 
-def bestMoveAndScore(game):
-    global tocan
+def bestMoveAndScore(game, x=0):
+    print x
+    x+=1
+    print game.x
     score = -2
     best_move = False
     for move in game.moves():
-        tocan = tocan + 1
-        print tocan
-        move_score = scorer(game, move)
+        move_score = scorer(game, move, x)
         if move_score > score:
             score = move_score
             best_move = move
@@ -45,7 +47,11 @@ class Tic:
         for i in self.b:
             if(i[0]==out):
                 out = -1
-        if(out!=-1):
+        if(self.score()==-1 or self.score()==1):
+            out = -2
+        if(out == -2):
+            return []
+        elif(out!=-1):
             moves = []
             for option in self.x:
                 if(option[0]==out):
@@ -85,9 +91,9 @@ class Tic:
         for p in self.b:
             w[p[0]%3].append(p[1])
             w[int(math.ceil(p[0]/3.00)+2)].append(p[1])
-            if(p[0]==1|p[0]==5|p[0]==9):
+            if(p[0]==1 or p[0]==5 or p[0]==9):
                 w[6].append(p[1])
-            elif(p[0]==3|p[0]==5|p[0]==7):
+            if(p[0]==3 or p[0]==5 or p[0]==7):
                 w[7].append(p[1])
         for p in w:
             total = 0
@@ -111,9 +117,9 @@ class Tic:
                 if(p[0]==i):
                     w[p[1]%3].append(p[2])
                     w[int(math.ceil(p[1]/3.00)+2)].append(p[2])
-                    if(p[1]==1|p[1]==5|p[1]==9):
+                    if(p[1]==1 or p[1]==5 or p[1]==9):
                         w[6].append(p[2])
-                    elif(p[1]==3|p[1]==5|p[1]==7):
+                    if(p[1]==3 or p[1]==5 or p[1]==7):
                         w[7].append(p[2])
             for p in w:
                 total = 0
@@ -133,14 +139,25 @@ class Tic:
 
 
 
-t = Tic()
+t = Tic([[5, 1, 'x'], [1, 1, 'o'], [1, 3, 'x'], [3, 2, 'o'], [2, 7, 'x'], [7, 4, 'o'], [4, 9, 'x'], [9, 9, 'o'], [9, 6, 'x'], [6, 4, 'o'], [4, 1, 'x'], [1, 9, 'o'], [9, 4, 'x'], [4, 7, 'o'], [7, 9, 'x'], [9, 3, 'o'], [3, 7, 'x'], [7, 3, 'o'], [3, 3, 'x'], [3, 6, 'o'], [6, 7, 'x'], [7, 8, 'o'], [8, 4, 'x'], [4, 4, 'o'], [4, 5, 'x'], [5, 3, 'o'], [3, 5, 'x'], [5, 4, 'o'], [9, 5, 'x'], [5, 2, 'o'], [2, 1, 'x'], [1, 5, 'o'], [5, 9, 'x'], [8, 9, 'o'], [5, 5, 'x'], [3, 8, 'o'], [8, 6, 'x'], [6, 2, 'o']]
+)
 p = ""
 d = ""
 while(t.moves() !=[]):
     p = int(raw_input(t.moves()))
     d = int(raw_input())
     t = t.afterMove([p,d])
-    if(t.moves !=[]):
+    if(t.moves !=[] and len(t.x) < 40):
+        print len(t.x)
+        print t.moves()
+        move = randint(0,len(t.moves())-1)
+        print t.x
+        print t.b
+        print t.moves()[move]
+        t = t.afterMove(t.moves()[move])
+        print t.x
+        print t.b
+    elif(t.moves !=[]):
         print t.moves()
         move = bestMoveAndScore(t)["move"]
         print t.moves()
